@@ -12,39 +12,39 @@ bot=telebot.TeleBot('993119728:AAFJBC3QM3uVUnazKyvU-Y6NOhmTdV2ay4Y')
 def start(message):
     if message.text == '/reg':
         bot.send_message(message.from_user.id, 'Как тебя зовут?')
-        bot.register_next_step_handler(message, get_name)
+        bot.register_next_step_handler(message, valut)
     else:
         bot.send_message(message.from_user.id, 'Напиши /reg')
 
-def get_name(message): #получаем фамилию
-    global name
-    name = message.text
-    bot.send_message(message.from_user.id, 'Какая у тебя фамилия?')
-    bot.register_next_step_handler(message, get_surname)
+# def get_name(message): #получаем фамилию
+#     global name
+#     name = message.text
+#     bot.send_message(message.from_user.id, 'Какая у тебя фамилия?')
+#     bot.register_next_step_handler(message, get_surname)
+#
+#
+# def get_surname(message):
+#     global surname
+#     surname = message.text
+#     bot.send_message(message.from_user.id, 'Сколько тебе лет?')
+#     bot.register_next_step_handler(message, get_age)
 
 
-def get_surname(message):
-    global surname
-    surname = message.text
-    bot.send_message(message.from_user.id, 'Сколько тебе лет?')
-    bot.register_next_step_handler(message, get_age)
-
-
-def get_age(message):
-    global age
-    # while age == 0: #проверяем что возраст изменился
-    try:
-        age = int(message.text) #проверяем, что возраст введен корректно
-        keyboard = telebot.types.InlineKeyboardMarkup()  # наша клавиатура
-        key_yes = telebot.types.InlineKeyboardButton(text='Да', callback_data='yes')  # кнопка «Да»
-        keyboard.add(key_yes)  # добавляем кнопку в клавиатуру
-        key_no = telebot.types.InlineKeyboardButton(text='Нет', callback_data='no')
-        keyboard.add(key_no)
-        question = 'Тебе ' + str(age) + ' лет, тебя зовут ' + name + ' ' + surname + '?'
-        bot.send_message(message.from_user.id, text=question, reply_markup=keyboard)
-    except Exception:
-        bot.send_message(message.from_user.id, 'Цифрами, пожалуйста')
-        bot.register_next_step_handler(message, get_age)
+# def get_age(message):
+#     global age
+#     # while age == 0: #проверяем что возраст изменился
+#     try:
+#         age = int(message.text) #проверяем, что возраст введен корректно
+#         keyboard = telebot.types.InlineKeyboardMarkup()  # наша клавиатура
+#         key_yes = telebot.types.InlineKeyboardButton(text='Да', callback_data='yes')  # кнопка «Да»
+#         keyboard.add(key_yes)  # добавляем кнопку в клавиатуру
+#         key_no = telebot.types.InlineKeyboardButton(text='Нет', callback_data='no')
+#         keyboard.add(key_no)
+#         question = 'Тебе ' + str(age) + ' лет, тебя зовут ' + name + ' ' + surname + '?'
+#         bot.send_message(message.from_user.id, text=question, reply_markup=keyboard)
+#     except Exception:
+#         bot.send_message(message.from_user.id, 'Цифрами, пожалуйста')
+#         bot.register_next_step_handler(message, get_age)
 
 
 def  valut(message):
@@ -69,16 +69,16 @@ def  valut(message):
     bot.register_next_step_handler(message, turma)
 
 
-def  turma(message):
-    keyboard = telebot.types.InlineKeyboardMarkup()
-
-
-    button1 = telebot.types.InlineKeyboardButton(text="Сидел", callback_data='Side')
-    keyboard.add(button1)
-    button2 = telebot.types.InlineKeyboardButton(text="Не сидел", callback_data='Notside')
-    keyboard.add(button2)
-
-    bot.register_next_step_handler(message, mast)
+# def  turma(message):
+#     keyboard = telebot.types.InlineKeyboardMarkup()
+#
+#
+#     button1 = telebot.types.InlineKeyboardButton(text="Сидел", callback_data='Side')
+#     keyboard.add(button1)
+#     button2 = telebot.types.InlineKeyboardButton(text="Не сидел", callback_data='Notside')
+#     keyboard.add(button2)
+#
+#     bot.register_next_step_handler(message, mast)
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
