@@ -9,7 +9,7 @@ bot=telebot.TeleBot('993119728:AAFJBC3QM3uVUnazKyvU-Y6NOhmTdV2ay4Y')
 
 
 @bot.message_handler(content_types=['text'])
-def start(message):git add
+def start(message):
     if message.text == '/reg':
         bot.send_message(message.from_user.id, 'Как тебя зовут?')
         bot.register_next_step_handler(message, get_name)
